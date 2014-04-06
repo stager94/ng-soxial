@@ -27,7 +27,7 @@
 					%ul.dropdown-menu
 						%li.dropdown-header INFORMATION
 						%li
-							%a{href: "#"} Profile
+							%a{href: "/#!/users/{{current_user.id}}"} Profile
 						%li
 							%a{href: "#"} Dashboard
 						%li.divider
@@ -35,5 +35,5 @@
 						%li
 							%a{ href: "#" } Delete account
 						%li
-							%a{ href: "#", "ng-click" => "logout()" } Logout
+							%a{ "ng-click" => "logout('/login')" } Logout
 		/ /.nav-collapse

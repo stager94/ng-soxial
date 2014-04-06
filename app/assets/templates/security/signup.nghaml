@@ -1,0 +1,36 @@
+.container
+	%form.login-form.col-md-6.col-md-offset-3{name: "signupForm", novalidate: "", "ng-submit" => "signup()"}
+		%h2.form-signin-heading 
+			Create new account
+			%small It's free and always will be.
+		
+		.row
+			%ul.bg-danger{"ng-show" => "!valid"} 
+				%li{ "ng-repeat" => "error in errors" } {{error}}
+		
+		.row
+			.col-md-6
+				.form-group
+					%input.form-control{ "ng-model" => "user.first_name", required: "", type: "text", placeholder: "First name", class: "input-lg"}/
+			.col-md-6
+				.form-group
+					%input.form-control{ "ng-model" => "user.last_name", required: "", type: "text", placeholder: "Last name", class: "input-lg"}/
+
+		.row
+			.col-md-12
+				.form-group
+					%input.form-control{ "ng-model" => "user.nickname", required: "", type: "text", placeholder: "Nickname", class: "input-lg"}/
+		.row
+			.col-md-12
+				.form-group
+					%input.form-control{ "ng-model" => "user.email", required: "", type: "text", placeholder: "Email address", class: "input-lg"}/
+
+		.row
+			.col-md-6
+				.form-group
+					%input.form-control{ "ng-model" => "user.password", required: "", type: "password", placeholder: "Password", class: "input-lg"}/
+			.col-md-6
+				.form-group
+					%input.form-control{ "ng-model" => "user.password_confirmation", required: "", type: "password", placeholder: "Password confirmation", class: "input-lg", value: ""}/
+
+		%button.btn.btn-lg.btn-primary.btn-block Submit

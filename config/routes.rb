@@ -11,6 +11,7 @@ NgSocial::Application.routes.draw do
       devise_scope :user do
         post "login" => "sessions#create", as: :login
         post "logout" => "sessions#destroy", as: :destroy
+        post "signup" => "registrations#create", as: :signup
         get "current_user" =>"users#show_current_user", as: :current_user
       end
 

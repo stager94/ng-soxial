@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 				 :recoverable, :rememberable, :trackable, :validatable
 
 	before_save :ensure_authentication_token
-
+	validates_presence_of :first_name, :last_name, :nickname
+	validates_uniqueness_of :nickname
 
 	def ensure_authentication_token
 		if authentication_token.blank?

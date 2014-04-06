@@ -34,6 +34,7 @@ gem 'angularjs-rails-resource'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'haml'
 gem 'devise'
+gem 'font-awesome-rails'
 
 group :development do
 	gem 'quiet_assets'

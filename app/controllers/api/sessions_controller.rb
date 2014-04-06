@@ -17,10 +17,10 @@ class Api::SessionsController < Devise::SessionsController
 	end
 
 	def destroy
-		warden.authenticate!(scope: resource_name, recall: "#{controller_path}#failure")
-
+		warden.authenticate! auth_options
 		current_user.update_column(:authentication_token, nil)
 		sign_out
+
 		render status: 200, json: { success: true, info: "Logged out" }
 	end
 

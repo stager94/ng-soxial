@@ -1,6 +1,8 @@
 window.SessionController = ($scope, $http, $routeParams, security) ->
 	$scope.user = {}
 	$scope.authError = null
+	$scope.valid = true
+	console.log "in SessionController"
 	
 	$scope.login = ->
 		$scope.authError = null
@@ -11,3 +13,31 @@ window.SessionController = ($scope, $http, $routeParams, security) ->
 		), (x) ->
 			$scope.authError = "Login Server offline, please try later"
 			return
+
+	$scope.signup = ->
+		$scope.errors = null
+		$scope.valid = true
+		console.log $scope.user
+
+		security.signup($scope.user).then ((response) ->
+			$scope.valid = response.data.success
+			$scope.errors = response.data.errors unless response.data.success
+		), (x) ->
+			$scope.authError = "Login Server offline, please try later"
+			return
+
+SessionController.checkAuth = ($q, $http, $rootScope, $location) ->
+	defered = $q.defer()
+	$http.get("/api/v1/current_user.json"
+	).success((response) ->
+		if response.success
+			defered.reject()
+			$location.path("/").replace()
+		else
+			defered.resolve response
+		return
+	).error ->
+		defered.reject()
+		$location.path("/").replace()
+		return
+	defered.promise

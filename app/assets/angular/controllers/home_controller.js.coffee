@@ -1,21 +1,19 @@
-window.HomeController = ($scope, $http, $routeParams, tokenHandler, security, users) ->
-	$scope.users = users
+window.HomeController = ($scope, User) ->
+	$scope.users = User.query()
 
+# HomeController.resolve =
+#   users: (User, $q) ->
+#     deferred = $q.defer()
+#     User.query ((successData) ->
+#       deferred.resolve successData
+#       return
+#     ), (errorData) ->
+#       deferred.reject()
+#       return
 
-HomeController.resolve =
-  users: (User, $q) ->
-    
-    deferred = $q.defer()
-    User.query ((successData) ->
-      deferred.resolve successData
-      return
-    ), (errorData) ->
-      deferred.reject()
-      return
+#     deferred.promise
 
-    deferred.promise
-
-  # delay: ($q, $timeout) ->
-  #   delay = $q.defer()
-  #   $timeout delay.resolve, 1000
-  #   delay.promise
+#   delay: ($q, $timeout) ->
+#     delay = $q.defer()
+#     $timeout delay.resolve, 10000
+#     delay.promise
