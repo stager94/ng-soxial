@@ -1,0 +1,39 @@
+.navbar.navbar-default.navbar-static-top{role: "navigation"}
+	.container
+		.navbar-header
+			%button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+				%span.sr-only Toggle navigation
+				%span.icon-bar
+				%span.icon-bar
+				%span.icon-bar
+			%a.navbar-brand{href: "#"} 
+				NG Social 
+				%sup.text-warning beta
+		.navbar-collapse.collapse
+			%ul.nav.navbar-nav
+				%li
+					%a{href: "#"} Home
+				
+			%ul.nav.navbar-nav.navbar-right{ "ng-hide" => "isAuthenticated()" }
+				%li
+					%a{ href: "/#!/login" } Sign In
+				%li
+					%a{ href: "/#!/signup" } Sign Up
+			%ul.nav.navbar-nav.navbar-right{ "ng-show" => "isAuthenticated()" }
+				%li.dropdown
+					%a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+						{{current_user.email}}
+						%b.caret
+					%ul.dropdown-menu
+						%li.dropdown-header INFORMATION
+						%li
+							%a{href: "#"} Profile
+						%li
+							%a{href: "#"} Dashboard
+						%li.divider
+						%li.dropdown-header ACTIONS
+						%li
+							%a{ href: "#" } Delete account
+						%li
+							%a{ href: "#", "ng-click" => "logout()" } Logout
+		/ /.nav-collapse

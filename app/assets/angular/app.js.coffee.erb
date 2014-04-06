@@ -1,0 +1,77 @@
+window.App = angular.module("NGSocial", [
+	"ngResource",
+	"app.loading",
+	"app.directives",
+	"templates",
+	"security"
+])
+
+App.config ($routeProvider, $locationProvider) ->
+	# Optimize for social engines
+	$locationProvider.html5Mode(false).hashPrefix '!' 
+	$routeProvider.when("/", 
+		redirectTo: "/home").
+	when("/home", 
+		templateUrl: "dashboard.html",
+		controller: "HomeController",
+		resolve: HomeController.resolve
+	).
+	when("/login", 
+		templateUrl: "login.html", 
+		controller: "SessionController", 
+		resolve:
+			factory: checkAuth,
+			page: (["$route", ($route) ->
+				"login"
+				])
+	)
+
+App.config ["$httpProvider", ($httpProvider) ->
+	$httpProvider.defaults.headers.common["X-CSRF-Token"] = document.getElementsByName("csrf-token")[0].content
+	$httpProvider.defaults.headers.common['Accept'] = "application/json"
+]
+
+checkAuth = ($q, $http, $rootScope, $location) ->
+	defered = $q.defer()
+	$http.get("/api/v1/current_user.json"
+	).success((response) ->
+		if response.success
+			defered.reject()
+			$location.path("/").replace()
+		else
+			defered.resolve response
+
+		return
+	).error ->
+		defered.reject()
+		$location.path("/").replace()
+		return
+
+	defered.promise
+
+App.config ($httpProvider) ->
+	$httpProvider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content")
+
+	interceptor = [
+		"$rootScope"
+		"$q"
+		(scope, $q) ->
+			success = (response) ->
+				response
+			error = (response) ->
+				if response.status is 401
+					deferred = $q.defer()
+					scope.$broadcast "event:unauthorized"
+					return deferred.promise
+				$q.reject response
+			return (promise) ->
+				promise.then success, error
+	]
+	$httpProvider.responseInterceptors.push interceptor
+	return
+
+
+angular.module("NGSocial").run (security) ->
+	# Get the current user when the application starts
+	# (in case they are still logged in from a previous session)
+	us = security.requestCurrentUser()

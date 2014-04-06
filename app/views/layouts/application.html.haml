@@ -1,0 +1,18 @@
+!!!
+%html{ "ng-app" => "NGSocial" }
+	%head
+		%title NgSocial
+		= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+		= javascript_include_tag "application", "data-turbolinks-track" => true
+		%link{href: "http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,cyrillic-ext", rel: "stylesheet", type: "text/css"}/
+		= csrf_meta_tags
+	%body
+		#wrapper{ "ng-controller" => "AppController" }
+			%main-toolbar
+			%div{ "ng-view" => true }
+			
+		#loading= image_tag "loading.GIF"
+
+		#footer
+			.container
+				%p.text-muted AlterEgo Labs &copy; NG Social, 2014

@@ -1,0 +1,6 @@
+%img{ ng:src="<%= asset_path('my_image.jpg') %>" }
+
+.container
+	%ul
+		%li{ "ng-repeat" => "user in users" }
+			%span{ "ng-bind" => "user.email" }

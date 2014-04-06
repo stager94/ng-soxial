@@ -1,0 +1,15 @@
+%form.login-form.form-signin{name: "loginForm", novalidate: "", "ng-submit" => "login()"}
+	%h2.form-signin-heading Please sign in
+	
+	/ .alert.alert-warning{"ng-show" => "authReason"}  
+	%p.bg-danger{"ng-show" => "authError"} {{authError}}
+	/ .alert.alert-info Please enter your login details
+
+	%input.form-control{ "ng-model" => "user.email", required: "", type: "email", placeholder: "Email address"}/
+	%input.form-control{ "ng-model" => "user.password", required: "", type: "password", placeholder: "Password"}/
+
+	%button.btn.btn-lg.btn-primary.btn-block Sign in
+
+
+/ {{lorem}}
+

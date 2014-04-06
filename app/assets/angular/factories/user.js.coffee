@@ -1,0 +1,1 @@
+App.factory "User", ($resource) -> $resource "api/v1/users/:id", id: "@id"

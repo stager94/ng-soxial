@@ -1,0 +1,17 @@
+%form.login-form{name: "form", novalidate: ""}
+  .modal-header
+    %h4 Sign in
+  .modal-body
+    .alert.alert-warning{"ng-show" => "authReason"}
+      
+    .alert.alert-error{"ng-show" => "authError"}
+      
+    .alert.alert-info Please enter your login details
+    %label E-mail
+    %input{autofocus: "", name: "login", "ng-model" => "user.email", required: "", type: "email"}/
+    %label Password
+    %input{name: "pass", "ng-model" => "user.password", required: "", type: "password"}/
+  .modal-footer
+    %button.btn.btn-primary.login{"ng-click" => "login()", "ng-disabled" => "form.$invalid"} Sign in
+    %button.btn.clear{"ng-click" => "clearForm()"} Clear
+    %button.btn.btn-warning.cancel{"ng-click" => "cancelLogin()"} Cancel
