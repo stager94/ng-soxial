@@ -1,5 +1,5 @@
-%form.login-form.form-signin{name: "loginForm", novalidate: "", "ng-submit" => "login()"}
-	%h2.form-signin-heading Please sign in
+%form.login-form.form-signin.ng-social-block{name: "loginForm", novalidate: "", "ng-submit" => "login()"}
+	%h2.form-signin-heading.form-heading Please sign in
 	
 	/ .alert.alert-warning{"ng-show" => "authReason"}  
 	/ %p.bg-danger{"ng-show" => "authError"} {{authError}}

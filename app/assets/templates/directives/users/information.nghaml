@@ -1,5 +1,6 @@
-%div
-	%h1 
-		{{user.first_name}} {{user.last_name}}
-		%small aka {{user.nickname}}
-	.p{{ "ng-bind-html" => "user.about" }}
+%div.ng-social-block.padded
+	/ %h1 
+	/ 	{{user.first_name}} {{user.last_name}}
+	/ 	%small aka {{user.nickname}}
+	%h3{ style: "margin-top: 0;" } About
+	%p{{ "ng-bind-html" => "user.about" }}

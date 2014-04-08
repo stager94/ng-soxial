@@ -12,7 +12,7 @@ class Api::SessionsController < Devise::SessionsController
 		render status: 200,
 					 json: { success: true,
 									 info: "Logged in",
-									 user: current_user,
+									 user: UserSerializer.new(current_user),
 									 auth_token: current_user.authentication_token }
 	end
 

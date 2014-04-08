@@ -1,6 +1,6 @@
 .container
-	%form#update-form.col-md-6.col-md-offset-3{name: "signupForm", novalidate: "", "ng-submit" => "update()", enctype: "multipart/form-data"}
-		%h2.form-signin-heading 
+	%form#update-form.col-md-6.col-md-offset-3.ng-social-block.padded{name: "signupForm", novalidate: "", "ng-submit" => "update()", enctype: "multipart/form-data" }
+		%h2.form-signin-heading.form-heading
 			Edit account
 
 		.row

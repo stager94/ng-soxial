@@ -1,6 +1,5 @@
 class Api::PostsController < ApplicationController
 	def create
-		# binding.pry
 		post = Post.new post_params
 		if post.save
 			render json: post
@@ -10,7 +9,7 @@ class Api::PostsController < ApplicationController
 	end
 
 	def index
-		render json: Post.where(user_id: params[:user_id]), root: false
+		render json: Post.includes(:author).where(user_id: params[:user_id]), root: false
 	end
 
 	private

@@ -4,4 +4,11 @@
 	%p.ng-callout{ "ng-hide" => "posts.length > 0" } No messages here
 
 	%div{ "ng-repeat" => "post in posts" }
-		%p{ "ng-bind" => "post.text" }
+		%article.post-container
+			.content-container
+				.user-header
+					%img.avatar{ "ng-src" => "{{post.author.small_avatar}}" }
+					.post-user-data
+						%a.user-link{ "href" => "/#!/users/{{post.author.id}}/posts", "ng-bind" => "post.author.full_name" }
+						.post-time{ "ng-bind" => "post.created_at_f" }
+				%div{ "ng-bind" => "post.text" }

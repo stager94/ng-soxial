@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
 		result = current_user ? true : false
 		render status: 200, json: { success: result,
 																info: "current_user",
-																user: current_user.as_json(only: [:id, :email, :first_name, :last_name, :nickname, :about], methods: [:small_avatar, :simple_about]) }
+																user: UserSerializer.new(current_user) }
 	end
 
 	def index

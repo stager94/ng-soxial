@@ -16,14 +16,6 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def medium_avatar
-		self.avatar.url(:medium)
-	end
-
-	def small_avatar
-		self.avatar.url(:small)
-	end
-	
 	private
 
 	def generate_authentication_token

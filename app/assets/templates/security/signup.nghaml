@@ -1,5 +1,5 @@
 .container
-	%form.login-form.col-md-6.col-md-offset-3{name: "signupForm", novalidate: "", "ng-submit" => "signup()"}
+	%form.login-form.col-md-6.col-md-offset-3.ng-social-block{name: "signupForm", novalidate: "", "ng-submit" => "signup()"}
 		%h2.form-signin-heading 
 			Just one more step!
 			%small It's free and always will be.
