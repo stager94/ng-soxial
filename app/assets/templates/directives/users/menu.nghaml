@@ -1,7 +1,7 @@
 %div
 	.profile
 		.information
-			%img.img-circle{alt: "...", "ng-src" => "{{user.avatar}}", style: "width: 150px; height: 150px;"}/
+			%img.img-circle{alt: "...", "ng-src" => "{{user.medium_avatar}}", style: "width: 150px; height: 150px;"}/
 			%p.name {{user.first_name}} {{user.last_name}}
 			%p{ "ng-bind" => "user.email" }
 		.cover

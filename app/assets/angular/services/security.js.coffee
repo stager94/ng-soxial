@@ -65,10 +65,17 @@ angular.module("security.service", []).factory "security", [
 				if service.isAuthenticated()
 					return service.current_user
 				else
-					$http.get("/api/v1/current_user.json").then (response) ->
-						service.current_user = response.data.user
-						tokenHandler.set response.data.auth_token
-						return service.current_user
+					service.reloadCurrentUser()
+					# $http.get("/api/v1/current_user.json").then (response) ->
+					# 	service.current_user = response.data.user
+					# 	tokenHandler.set response.data.auth_token
+					# 	return service.current_user
+
+			reloadCurrentUser: ->
+				$http.get("/api/v1/current_user.json").then (response) ->
+					service.current_user = response.data.user
+					tokenHandler.set response.data.auth_token
+					return service.current_user				
 
 			current_user: null
 

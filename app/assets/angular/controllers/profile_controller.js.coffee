@@ -7,6 +7,8 @@ window.ProfileController = ($scope, $http, User, security, fileUpload) ->
 	$scope.$on "event:updated", (event, message) ->
 		$scope.message = message
 		$scope.myFile = null
+		security.reloadCurrentUser()
+
 
 	$scope.update = ->
 		$scope.errors = null

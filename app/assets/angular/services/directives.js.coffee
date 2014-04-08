@@ -21,11 +21,9 @@
         $scope.$on "event:unauthorized", (event) ->
           console.log 'event:unauthorized'
           $scope.isAuthenticated = security.isAuthenticated
-          # security.showLogin()  
           return
 
         $scope.$on "event:authenticated", (event) ->
-          # security.hideLogin()
           console.log "hideLogin"
           return
           

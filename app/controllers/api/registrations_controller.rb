@@ -46,7 +46,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     fix_password_confirmation
-    params.require(:user).permit! unless params[:user].blank?
+    params.require(:user).permit(:first_name, :last_name, :nickname, :email, :avatar, :about, :password, :password_confirmation) unless params[:user].blank?
   end
 
   def fix_password_confirmation

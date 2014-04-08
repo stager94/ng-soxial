@@ -21,8 +21,10 @@
 					%a{ href: "/#!/signup" } Sign Up
 			%ul.nav.navbar-nav.navbar-right{ "ng-show" => "isAuthenticated()" }
 				%li.dropdown
-					%a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-						{{current_user.email}}
+					%a.dropdown-toggle.with-image{"data-toggle" => "dropdown", href: "#"}
+						%img.img-circle{ "ng-src" => "{{current_user.small_avatar}}" }
+						{{current_user.first_name}}
+						{{current_user.last_name}}
 						%b.caret
 					%ul.dropdown-menu
 						%li.dropdown-header INFORMATION

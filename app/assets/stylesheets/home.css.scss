@@ -208,3 +208,16 @@ ul {
 
 /*Ignore this tag. It is to give space.*/
 #space { padding: 10px; }
+
+.dropdown-toggle {
+  &.with-image {
+    padding-left: 44px;
+    position: relative;
+    img {
+      position: absolute;
+      top: 7px;
+      left: 5px;
+      height: 35px;
+    }
+  }
+}
