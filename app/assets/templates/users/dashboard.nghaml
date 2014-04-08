@@ -1,0 +1,48 @@
+.container
+	%form#update-form.col-md-6.col-md-offset-3{name: "signupForm", novalidate: "", "ng-submit" => "update()", enctype: "multipart/form-data"}
+		%h2.form-signin-heading 
+			Edit account
+
+		.row
+			.col-md-12
+				.bs-callout.bs-callout-danger{"ng-show" => "!valid"} 
+					%h4 WoW! Something went wrong:
+					%div{ "ng-repeat" => "error in errors" } {{error}}
+
+		.row
+			.col-md-12
+				.bs-callout.bs-callout-warning{"ng-show" => "message"} 
+					%h4 WoW! That's great..
+					%div {{message}}
+
+		.row
+			.col-md-6
+				.form-group
+					%input.form-control{ "ng-model" => "user.first_name", required: "", type: "text", placeholder: "First name", class: "input-lg", name: "user[first_name]" }/
+
+			.col-md-6
+				.form-group
+					%input.form-control{ "ng-model" => "user.last_name", required: "", type: "text", placeholder: "Last name", class: "input-lg", name: "user[last_name]" }/
+
+		.row
+			.col-md-12
+				.form-group
+					%input.form-control{ "ng-model" => "user.nickname", required: "", type: "text", placeholder: "Nickname", class: "input-lg", name: "user[nickname]" }/
+					%p.help-block Minimum 4 characters, maximum 15 characters.
+		.row
+			.col-md-12
+				.form-group
+					%input.form-control{ "ng-model" => "user.email", required: "", type: "text", placeholder: "Email address", class: "input-lg", name: "user[email]"}/
+					%p.help-block A valid e-mail address. All e-mails from the system will be sent to this address.
+
+		.row
+			.col-md-12
+				.form-group
+					%input.form-control{ "ng-model" => "user.avatar", required: "", type: "file", placeholder: "Email address", class: "input-lg", id: "user-avatar", "file-model" => "myFile", name: "user[avatar]" }/
+
+		.row
+			.col-md-12
+				.form-group
+					%textarea.form-control.input-lg{ "ng-model" => "user.about", placeholder: "Some sentences about my life", name: "user[about]" }
+
+		%button.btn.btn-lg.btn-primary.btn-block Submit

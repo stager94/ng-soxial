@@ -1,0 +1,81 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require signin
+ *= require home
+ *= require sticky-footer
+ *= require font-awesome
+ */
+
+
+$border-radius-base: 0;
+$border-radius-large: 0;
+$border-radius-small: 0;
+$font-family-base: Roboto;
+// $input-border: red;
+
+@import "bootstrap";
+
+.form-control {
+	box-shadow: none !important;
+}
+
+* {
+	outline: none !important;
+}
+
+/*
+ * Callouts
+ *
+ * Not quite alerts, but custom and helpful notes for folks reading the docs.
+ * Requires a base and modifier class.
+ */
+
+/* Common styles for all types */
+.bs-callout {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 3px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code {
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+/* Variations */
+.bs-callout-danger {
+  background-color: #fdf7f7;
+  border-color: #d9534f;
+}
+.bs-callout-danger h4 {
+  color: #d9534f;
+}
+.bs-callout-warning {
+  background-color: #fcf8f2;
+  border-color: #f0ad4e;
+}
+.bs-callout-warning h4 {
+  color: #f0ad4e;
+}
+.bs-callout-info {
+  background-color: #f4f8fa;
+  border-color: #5bc0de;
+}
+.bs-callout-info h4 {
+  color: #5bc0de;
+}

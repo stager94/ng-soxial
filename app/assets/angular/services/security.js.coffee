@@ -5,8 +5,9 @@ angular.module("security.service", []).factory "security", [
 	"$http",
 	"$q",
 	"Session",
-	"tokenHandler"
-	($location, $http, $q, Session, tokenHandler) ->
+	"tokenHandler",
+	"profile"
+	($location, $http, $q, Session, tokenHandler, profile) ->
 		redirect = (url) ->
 			url = url or "/"
 			$location.path url
@@ -46,6 +47,19 @@ angular.module("security.service", []).factory "security", [
 					redirect redirectTo
 					return
 				return false
+
+			update: (params, avatar_params) ->
+				console.log "params:", params
+				$http.post("api/v1/update_profile.json",
+					avatar_params
+					transformRequest: angular.identity,
+					headers:
+	          "Content-Type": `undefined`
+				).success (data, status, header, config) ->
+					console.log "PROFILE.USER", profile.user
+					profile.user = null
+					console.log "PROFILE.USER2", profile.user
+					console.log "api.update_profile success"
 
 			requestCurrentUser: ->
 				if service.isAuthenticated()

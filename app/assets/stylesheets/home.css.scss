@@ -1,7 +1,7 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.bg-danger {
+.bg-danger, .bg-success {
 	padding: 15px;
 }
 
@@ -15,19 +15,11 @@
 	z-index: 99999;
 }
 
-* {
-	font-family: Roboto;
-}
-
 .home-panel {
 	background: image-url("social_background.jpg") no-repeat 50% 50%;
 	margin-top: -20px;
 	height: 400px;
 }
-
-// .navbar-static-top {
-// 	margin-bottom: 0;
-// }
 
 a {
 	cursor: pointer;
@@ -144,11 +136,33 @@ ul {
 }
 
 
-
-
 .profile {
-    background-color: #FF766C;
-    border: 1px solid #ff766c;
+    // background-color: #FF766C;
+    // border: 1px solid #ff766c;
+    position: relative;
+    width: 100%;
+    display: table;
+    // display: table;
+    .information {
+      // position: absolute;
+      z-index: 999;
+      .name {
+        text-transform: uppercase;
+        font-size: 18px;
+        margin-bottom: 0;
+      }
+    }
+    .cover {
+      position: absolute;
+      z-index: -1;
+      background-image: url(/images/persons/cover_1.png);
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, .4);
+    }
 }
 
 .profile img {
@@ -163,16 +177,34 @@ ul {
     color: #fff;
 }
 
-.list-group-item {
+.list-group-item a {
     background-color: #fff;
     border-radius: 0px !important;
-    border: 1px solid #DDD;
+    // border: 1px solid #DDD;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #ffffff;
+    color: #555;
+    border-left: 3px solid transparent;
+    &:hover {
+      text-decoration: none;
+    }
+    // border: 1px solid #dddddd;
 }
 
-.list-group-item.active, .list-group-item:hover {
+.list-group-item.active a, .list-group-item:hover a {
     border-left: 3px solid #FF766C;
     background-color: #F8F7F5;
 }
 
+.list-group {
+  .list-group-item {
+    padding: 0;
+    border: 0;
+  }
+}
+
 /*Ignore this tag. It is to give space.*/
-#space {padding: 10px;}
+#space { padding: 10px; }

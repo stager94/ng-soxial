@@ -8,7 +8,7 @@
       restrict: "E"
       replace: true
       scope: true
-      link: ($scope, $element, $attrs, $$controller) ->
+      link: ($scope, $element, $attrs, $controller) ->
         $scope.isAuthenticated = security.isAuthenticated
         $scope.login = security.showLogin
         $scope.logout = security.logout
@@ -30,6 +30,65 @@
           return
           
         return
+    return directive
+
+  app.directive "userPosts", ($routeParams, User) ->
+    directive =
+      templateUrl: "directives/users/posts.html"
+      restrict: "AECM"
+      replace: true
+      scope: true
+      link: ($scope, $element, $attrs, $controller) ->
+        console.log "in userPosts directive"
+        # $scope.posts = User.get {id: $routeParams.id}
 
     return directive
+
+  app.directive "userInformation", ($routeParams, User) ->
+    directive =
+      templateUrl: "directives/users/information.html"
+      restrict: "AECM"
+      replace: false
+      scope: false
+      link: ($scope, $element, $attrs, $controller) ->
+        console.log "in userPosts directive"
+        $scope.posts = User.get {id: $routeParams.id}
+
+    return directive
+
+  app.directive "userMenu", (profile) ->
+    directive =
+      templateUrl: "directives/users/menu.html"
+      restrict: "AECM"
+      replace: true
+      scope: true
+      link: ($scope, $element, $attrs, $controller) ->
+        $scope.$watch (->
+          profile.user
+        ), (user) ->
+          $scope.user = user
+          return
+
+    return directive
+    
+
+  app.directive "fileModel", [
+    "$parse"
+    ($parse) ->
+      return (
+        restrict: "A"
+        link: (scope, element, attrs) ->
+          model = $parse(attrs.fileModel)
+          modelSetter = model.assign
+          element.bind "change", ->
+            console.log "..fileModel changed.."
+            scope.$apply ->
+              modelSetter scope, element[0].files[0]
+              return
+
+            return
+
+          return
+      )
+  ]
 )()

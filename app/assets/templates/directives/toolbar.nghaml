@@ -29,7 +29,7 @@
 						%li
 							%a{href: "/#!/users/{{current_user.id}}"} Profile
 						%li
-							%a{href: "#"} Dashboard
+							%a{href: "/#!/users/dashboard"} Dashboard
 						%li.divider
 						%li.dropdown-header ACTIONS
 						%li

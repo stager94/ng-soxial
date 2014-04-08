@@ -8,6 +8,7 @@ gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -34,6 +35,7 @@ gem 'angularjs-rails-resource'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'haml'
 gem 'devise'
+gem 'paperclip'
 gem 'font-awesome-rails'
 
 group :development do

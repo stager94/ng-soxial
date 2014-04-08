@@ -12,6 +12,7 @@ NgSocial::Application.routes.draw do
         post "login" => "sessions#create", as: :login
         post "logout" => "sessions#destroy", as: :destroy
         post "signup" => "registrations#create", as: :signup
+        post "update_profile" => "registrations#update", as: :update_profile
         get "current_user" =>"users#show_current_user", as: :current_user
       end
 

@@ -1,0 +1,15 @@
+%div
+	.profile
+		.information
+			%img.img-circle{alt: "...", "ng-src" => "{{user.avatar}}", style: "width: 150px; height: 150px;"}/
+			%p.name {{user.first_name}} {{user.last_name}}
+			%p{ "ng-bind" => "user.email" }
+		.cover
+			.darker
+			.image
+
+	%ul.list-group{ "ng-controller" => "MenuController" }
+		%li.list-group-item{ "ng-class" => "{active: isActive('information', tab)}" }
+			%a{ href: "/#!/users/{{user.id}}/information" } Information
+		%li.list-group-item{ "ng-class" => "{active: isActive('posts', tab)}" }
+			%a{ href: "/#!/users/{{user.id}}/posts" } Posts

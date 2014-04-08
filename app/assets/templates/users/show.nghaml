@@ -1,13 +1,5 @@
-
 .container
 	%article.col-sm-3.col-md-3.col-lg-3
-		.profile
-			%img.img-circle{alt: "...", src: "/images/persons/person_2.png", style: "width: 150px; height: 150px;"}/
-			%p {{user.first_name}} {{user.last_name}}
-			%p {{user.email}}
-		%ul.list-group
-			%li.list-group-item Information
-			%li.list-group-item Posts
-			
-	.col-md-9
-		Content Part
+		%user-menu
+
+	.col-md-9#user-directives

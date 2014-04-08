@@ -1,0 +1,5 @@
+%div
+	%h1 
+		{{user.first_name}} {{user.last_name}}
+		%small aka {{user.nickname}}
+	.lead {{user.about}}

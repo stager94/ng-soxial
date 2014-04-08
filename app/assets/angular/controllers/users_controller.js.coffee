@@ -1,21 +1,36 @@
-window.UsersController = ($scope, $routeParams, User) ->
+window.UsersController = ($scope, $http, $compile, $routeParams, $q, $location, User, profile) ->
 	console.log "in UsersController"
-	console.log $routeParams.id
-	$scope.user = User.get({id: $routeParams.id})
-	console.log $scope.user
+	$scope.user = User.get id: $routeParams.id
 
-UsersController.checkAuth = ($q, $http, $rootScope, $location) ->
-	defered = $q.defer()
-	$http.get("/api/v1/current_user.json"
-	).success((response) ->
-		if response.success
-			defered.resolve response
-		else
-			defered.reject()
-			$location.path("/").replace()
-		return
-	).error ->
-		defered.reject()
-		$location.path("/").replace()
-		return
-	defered.promise
+	# request user for menu directive
+	profile.requestUser $routeParams.id unless profile.user && profile.user.id == parseInt($routeParams.id)
+	profile.checkUser $scope.user
+
+	if $routeParams.tab
+		$scope.tab = $routeParams.tab
+	else
+		$scope.tab = "information"
+
+	# show necessary tab
+	newElement = $compile("<user-" + $scope.tab + " />")($scope)
+	$("#user-directives").append newElement
+
+
+
+UsersController.resolve =
+  users: (User, $q) ->
+    deferred = $q.defer()
+
+    User.get ((successData) ->
+      deferred.resolve successData
+      return
+    ), (errorData) ->
+      deferred.reject()
+      return
+
+    deferred.promise
+
+  # delay: ($q, $defer) ->
+  #   delay = $q.defer()
+  #   $defer delay.resolve, 1000
+  #   delay.promise

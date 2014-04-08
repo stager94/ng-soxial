@@ -1,12 +1,16 @@
 .container
 	%form.login-form.col-md-6.col-md-offset-3{name: "signupForm", novalidate: "", "ng-submit" => "signup()"}
 		%h2.form-signin-heading 
-			Create new account
+			Just one more step!
 			%small It's free and always will be.
 		
+		.lead Start a conversation, explore your interests, and be in the know.
+
 		.row
-			%ul.bg-danger{"ng-show" => "!valid"} 
-				%li{ "ng-repeat" => "error in errors" } {{error}}
+			.col-md-12
+				.bs-callout.bs-callout-danger{"ng-show" => "!valid"} 
+					%h4 WoW! Something went wrong:
+					%div{ "ng-repeat" => "error in errors" } {{error}}
 		
 		.row
 			.col-md-6
@@ -20,17 +24,23 @@
 			.col-md-12
 				.form-group
 					%input.form-control{ "ng-model" => "user.nickname", required: "", type: "text", placeholder: "Nickname", class: "input-lg"}/
+					%p.help-block Minimum 4 characters, maximum 15 characters.
 		.row
 			.col-md-12
 				.form-group
 					%input.form-control{ "ng-model" => "user.email", required: "", type: "text", placeholder: "Email address", class: "input-lg"}/
+					%p.help-block A valid e-mail address. All e-mails from the system will be sent to this address.
 
 		.row
 			.col-md-6
 				.form-group
 					%input.form-control{ "ng-model" => "user.password", required: "", type: "password", placeholder: "Password", class: "input-lg"}/
+					%p.help-block 6-character minimum; case sensetive
 			.col-md-6
 				.form-group
 					%input.form-control{ "ng-model" => "user.password_confirmation", required: "", type: "password", placeholder: "Password confirmation", class: "input-lg", value: ""}/
 
 		%button.btn.btn-lg.btn-primary.btn-block Submit
+
+		%p.text-muted 
+			%small By clicking the button above, you agree to Campaign Monitor's Terms of Use, Privacy Policy and Anti-spam policy.

@@ -3,7 +3,9 @@ window.App = angular.module("NGSocial", [
 	"app.loading",
 	"app.directives",
 	"templates",
-	"security"
+	"security",
+	"access",
+	"profile"
 ])
 
 App.config ($routeProvider, $locationProvider) ->
@@ -19,20 +21,33 @@ App.config ($routeProvider, $locationProvider) ->
 		templateUrl: "security/login.html", 
 		controller: "SessionController", 
 		resolve:
-			factory: SessionController.checkAuth
+			factory: AccessController.checkAuth
 	).
 	when("/signup",
 		templateUrl: "security/signup.html",
 		controller: "SessionController",
 		resolve:
-			factory: SessionController.checkAuth
+			factory: AccessController.checkAuth
+	).
+	when("/users/dashboard",
+		templateUrl: "users/dashboard.html",
+		controller: "ProfileController",
+		resolve:
+			factory: AccessController.checkAccess
 	).
 	when("/users/:id",
 		templateUrl: "users/show.html",
 		controller: "UsersController",
 		resolve:
-			factory: UsersController.checkAuth
+			factory: AccessController.checkAccess
+	).
+	when("/users/:id/:tab",
+		templateUrl: "users/show.html",
+		controller: "UsersController",
+		resolve:
+			factory: AccessController.checkAccess
 	)
+	
 
 App.config ["$httpProvider", ($httpProvider) ->
 	$httpProvider.defaults.headers.common["X-CSRF-Token"] = document.getElementsByName("csrf-token")[0].content

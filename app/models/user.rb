@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 	validates_presence_of :first_name, :last_name, :nickname
 	validates_uniqueness_of :nickname
 
+	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
+
 	def ensure_authentication_token
 		if authentication_token.blank?
 			self.authentication_token = generate_authentication_token

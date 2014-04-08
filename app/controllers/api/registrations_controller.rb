@@ -1,6 +1,6 @@
 # app/controllers/registrations_controller.rb
 class Api::RegistrationsController < Devise::RegistrationsController
-
+  @@a = :b
   skip_before_filter :verify_authenticity_token
   respond_to :json
   
@@ -24,13 +24,15 @@ class Api::RegistrationsController < Devise::RegistrationsController
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     # prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+    # binding.pry
+    result = params[:user] ? resource.update_without_password(user_params) : true
 
-    if resource.update_without_password account_update_params
-      # return render json: { success: true }
-      respond_with resource
+    if result
+      return render json: { success: true, "#{resource_name}" => resource, message: "Successfully updated!" }
+      # respond_with resource
     else
       clean_up_passwords resource
-      return render json: { success: false, errors: resource.errors }
+      return render json: { success: false, errors: resource.errors.full_messages }
     end
   end
  
