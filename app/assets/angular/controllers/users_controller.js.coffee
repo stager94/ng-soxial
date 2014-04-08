@@ -1,15 +1,15 @@
 window.UsersController = ($scope, $http, $compile, $routeParams, $q, $location, User, profile) ->
 	console.log "in UsersController"
 
-	$scope.user = User.get
+	User.get
 		id: $routeParams.id
 	, (response) ->
+		$scope.user = response
 		$scope.user.about = $.simpleFormat response.about
 
 
 	# request user for menu directive
 	profile.requestUser $routeParams.id unless profile.user && profile.user.id == parseInt($routeParams.id)
-	profile.checkUser $scope.user
 
 	if $routeParams.tab
 		$scope.tab = $routeParams.tab
@@ -21,19 +21,18 @@ window.UsersController = ($scope, $http, $compile, $routeParams, $q, $location, 
 	$("#user-directives").append newElement
 
 
+# UsersController.resolve =
+# 	users: (User, $q) ->
+# 		deferred = $q.defer()
 
-UsersController.resolve =
-	users: (User, $q) ->
-		deferred = $q.defer()
+# 		User.get ((successData) ->
+# 			deferred.resolve successData
+# 			return
+# 		), (errorData) ->
+# 			deferred.reject()
+# 			return
 
-		User.get ((successData) ->
-			deferred.resolve successData
-			return
-		), (errorData) ->
-			deferred.reject()
-			return
-
-		deferred.promise
+# 		deferred.promise
 
 	# delay: ($q, $defer) ->
 	#   delay = $q.defer()

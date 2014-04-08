@@ -16,7 +16,10 @@ NgSocial::Application.routes.draw do
         get "current_user" =>"users#show_current_user", as: :current_user
       end
 
-      resources :users, only: [:show, :index]
+      resources :users, only: [:show, :index] do
+        resources :posts, except: [:new, :edit]
+      end
+
     end
   end
 

@@ -1,0 +1,1 @@
+App.factory "Post", ($resource) -> $resource "api/v1/users/:user_id/posts/:id", id: "@id", user_id: "@user_id"

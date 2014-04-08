@@ -1,1 +1,7 @@
-%div userPosts
+%div{ "ng-controller" => "PostsController" }
+	%div{ "ng-include" => "'posts/shared/new.html'" }
+
+	%p.ng-callout{ "ng-hide" => "posts.length > 0" } No messages here
+
+	%div{ "ng-repeat" => "post in posts" }
+		%p{ "ng-bind" => "post.text" }

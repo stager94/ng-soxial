@@ -31,11 +31,9 @@ angular.module("security.service", []).factory "security", [
 					if service.isAuthenticated() then redirect()
 
 			signup: (params) ->
-				console.log "Params: ", params
 				$http.post("/api/v1/signup.json",
 					user: params
 				).success (data, status, header, config) ->
-					console.log "signup.success"
 					service.current_user = data.user
 					tokenHandler.set data.user.auth_token
 					if service.isAuthenticated() then redirect()
@@ -56,10 +54,7 @@ angular.module("security.service", []).factory "security", [
 					headers:
 	          "Content-Type": `undefined`
 				).success (data, status, header, config) ->
-					console.log "PROFILE.USER", profile.user
 					profile.user = null
-					console.log "PROFILE.USER2", profile.user
-					console.log "api.update_profile success"
 
 			requestCurrentUser: ->
 				if service.isAuthenticated()

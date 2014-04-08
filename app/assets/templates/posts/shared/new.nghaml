@@ -1,0 +1,12 @@
+%div{ "ng-controller" => "PostsController" }
+	%form#new-post{ name: "new_post", novalidate: "", "ng-submit" => "create()" }
+		%h2 Post for friend
+
+		.row
+			.col-md-12
+				.form-group
+					%textarea.form-control.input-lg{ "ng-model" => "post.text", placeholder: "Include a message for {{user.first_name}}", required: true }
+
+			.col-md-12
+				.form-group
+					%button.btn.btn-primary.input-lg{ type: "submit" } Leave message
