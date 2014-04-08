@@ -1,6 +1,11 @@
 window.UsersController = ($scope, $http, $compile, $routeParams, $q, $location, User, profile) ->
 	console.log "in UsersController"
-	$scope.user = User.get id: $routeParams.id
+
+	$scope.user = User.get
+		id: $routeParams.id
+	, (response) ->
+		$scope.user.about = $.simpleFormat response.about
+
 
 	# request user for menu directive
 	profile.requestUser $routeParams.id unless profile.user && profile.user.id == parseInt($routeParams.id)
@@ -18,19 +23,19 @@ window.UsersController = ($scope, $http, $compile, $routeParams, $q, $location, 
 
 
 UsersController.resolve =
-  users: (User, $q) ->
-    deferred = $q.defer()
+	users: (User, $q) ->
+		deferred = $q.defer()
 
-    User.get ((successData) ->
-      deferred.resolve successData
-      return
-    ), (errorData) ->
-      deferred.reject()
-      return
+		User.get ((successData) ->
+			deferred.resolve successData
+			return
+		), (errorData) ->
+			deferred.reject()
+			return
 
-    deferred.promise
+		deferred.promise
 
-  # delay: ($q, $defer) ->
-  #   delay = $q.defer()
-  #   $defer delay.resolve, 1000
-  #   delay.promise
+	# delay: ($q, $defer) ->
+	#   delay = $q.defer()
+	#   $defer delay.resolve, 1000
+	#   delay.promise

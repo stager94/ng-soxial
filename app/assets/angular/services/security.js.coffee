@@ -66,16 +66,13 @@ angular.module("security.service", []).factory "security", [
 					return service.current_user
 				else
 					service.reloadCurrentUser()
-					# $http.get("/api/v1/current_user.json").then (response) ->
-					# 	service.current_user = response.data.user
-					# 	tokenHandler.set response.data.auth_token
-					# 	return service.current_user
 
 			reloadCurrentUser: ->
 				$http.get("/api/v1/current_user.json").then (response) ->
 					service.current_user = response.data.user
 					tokenHandler.set response.data.auth_token
-					return service.current_user				
+					# service.current_user.about = $.simpleFormat(service.current_user.about)
+					return service.current_user
 
 			current_user: null
 

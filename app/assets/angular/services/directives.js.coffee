@@ -50,7 +50,7 @@
       scope: false
       link: ($scope, $element, $attrs, $controller) ->
         console.log "in userPosts directive"
-        $scope.posts = User.get {id: $routeParams.id}
+        # $scope.user = User.get {id: $routeParams.id}
 
     return directive
 

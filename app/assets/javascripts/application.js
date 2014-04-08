@@ -11,7 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require inputfile
 //= require angular.min
+//= require angular-sanitize
 //= require angular-resource.min
 //= require angular-route
 //= require bootstrap
@@ -35,3 +37,21 @@ $.fn.serializeObject = function() {
   });
   return o;
 };
+
+(function($) {
+  $.simpleFormat = function(str) {
+    str = str.replace(/\r\n?/, "\n");
+    str = $.trim(str);
+    if (str.length > 0) {
+      str = str.replace(/\n\n+/g, "</p><p>");
+      str = str.replace(/\n/g, "<br />");
+      str = "<p>" + str + "</p>";
+    }
+    return str;
+  };
+ 
+  $.fn.simpleFormat = function() {
+    return this.html($.simpleFormat(this.html()));
+  };
+ 
+})(jQuery);

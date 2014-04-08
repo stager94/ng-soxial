@@ -1,5 +1,7 @@
 window.App = angular.module("NGSocial", [
 	"ngResource",
+	"ngRoute",
+	"ngSanitize",
 	"app.loading",
 	"app.directives",
 	"templates",
@@ -74,6 +76,15 @@ App.config ($httpProvider) ->
 	]
 	$httpProvider.responseInterceptors.push interceptor
 	return
+
+App.filter "convertState", ($sce) ->
+	(state) ->
+		console.log "State is ", state
+		if state is 1
+			$sce.trustAsHtml "<strong>" + state + "</strong> special state"
+		else
+			$sce.trustAsHtml "<strong>" + state + "</strong> normal state"
+
 
 
 angular.module("NGSocial").run (security) ->

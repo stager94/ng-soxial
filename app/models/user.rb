@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 	def small_avatar
 		self.avatar.url(:small)
 	end
-
+	
 	private
 
 	def generate_authentication_token
