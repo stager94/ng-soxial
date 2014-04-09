@@ -15,7 +15,6 @@ class Api::UsersController < ApplicationController
 	end
 
 	def index
-		# binding.pry
 		render json: User.all, root: false
 	end
 

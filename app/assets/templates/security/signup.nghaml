@@ -7,11 +7,10 @@
 		.lead Start a conversation, explore your interests, and be in the know.
 
 		.row
-			.col-md-12
-				.bs-callout.bs-callout-danger{"ng-show" => "!valid"} 
-					%h4 WoW! Something went wrong:
-					%div{ "ng-repeat" => "error in errors" } {{error}}
-		
+			.bs-callout.bs-callout-danger{"ng-show" => "!valid"} 
+				%h4 WoW! Something went wrong:
+				%div{ "ng-repeat" => "error in errors" } {{error}}
+	
 		.row
 			.col-md-6
 				.form-group
