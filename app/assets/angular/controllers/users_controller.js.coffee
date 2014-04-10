@@ -1,4 +1,4 @@
-window.UsersController = ($scope, $http, $compile, $routeParams, $q, $location, User, profile) ->
+window.UsersController = ($scope, $compile, $routeParams, User, profile) ->
 	console.log "in UsersController"
 
 	User.get
@@ -6,7 +6,6 @@ window.UsersController = ($scope, $http, $compile, $routeParams, $q, $location, 
 	, (response) ->
 		$scope.user = response
 		$scope.user.about = $.simpleFormat response.about
-
 
 	# request user for menu directive
 	profile.requestUser $routeParams.id unless profile.user && profile.user.id == parseInt($routeParams.id)

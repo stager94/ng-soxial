@@ -24,7 +24,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     # prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-    # binding.pry
+
     result = params[:user] ? resource.update_without_password(user_params) : true
 
     if result
@@ -46,7 +46,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     fix_password_confirmation
-    params.require(:user).permit(:first_name, :last_name, :nickname, :email, :avatar, :about, :password, :password_confirmation) unless params[:user].blank?
+    params.require(:user).permit(:first_name, :last_name, :nickname, :email, :avatar, :about, :password, :password_confirmation, :cover) unless params[:user].blank?
   end
 
   def fix_password_confirmation

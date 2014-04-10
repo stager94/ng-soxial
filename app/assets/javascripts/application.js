@@ -11,11 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.autosize
 //= require inputfile
 //= require angular.min
 //= require angular-sanitize
 //= require angular-resource.min
 //= require angular-route
+//= require angular-infinityscroll
 //= require bootstrap
 //= require ../angular/app
 //= require_tree ../angular

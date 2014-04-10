@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :email, :first_name, :last_name, :nickname, :about,
-  					 :updated_at, :medium_avatar, :small_avatar, :full_name
+  					 :updated_at, :medium_avatar, :small_avatar, :full_name, :cover
   self.root = false
 
   def full_name

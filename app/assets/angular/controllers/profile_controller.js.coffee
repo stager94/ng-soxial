@@ -1,12 +1,14 @@
-window.ProfileController = ($scope, $http, User, security, fileUpload) ->
+window.ProfileController = ($scope, $http, User, security) ->
 	console.log "in ProfileController"
 	$scope.user = security.requestCurrentUser()
+	console.log $scope.user
 	$scope.errors = null
 	$scope.valid = true
 
 	$scope.$on "event:updated", (event, message) ->
 		$scope.message = message
-		$scope.myFile = null
+		$scope.myAvatarFile = null
+		$scope.myCoverFile = null
 		security.reloadCurrentUser()
 
 
@@ -17,12 +19,15 @@ window.ProfileController = ($scope, $http, User, security, fileUpload) ->
 
 		formElement = $("#update-form")
 		fd = new FormData formElement
-		fd.append "user[avatar]", $scope.myFile if $scope.myFile
 
 		angular.forEach $scope.user, (value, key) ->
 			if value == `undefined`
 				value = ""
-			fd.append "user[" + key + "]", value
+			fd.append "user[" + key + "]", value if key not in ["avatar", "cover"]
+
+		fd.append "user[avatar]", $scope.myAvatarFile if $scope.myAvatarFile
+		fd.append "user[cover]", $scope.myCoverFile if $scope.myCoverFile
+
 
 		security.update($scope.user, fd).then ((response) ->
 			$scope.valid = response.data.success

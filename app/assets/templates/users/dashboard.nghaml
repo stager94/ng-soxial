@@ -36,7 +36,12 @@
 		.row
 			.col-md-12
 				.form-group
-					%input.form-control{ "ng-model" => "user.avatar", required: "", type: "file", placeholder: "Email address", class: "input-lg", id: "user-avatar", "file-model" => "myFile", name: "user[avatar]" }/
+					%input.form-control{ "ng-model" => "user.avatar", required: "", type: "file", class: "input-lg", id: "user-avatar", "file-model" => "myAvatarFile", name: "user[avatar]" }/
+
+		.row
+			.col-md-12
+				.form-group
+					%input.form-control{ "ng-model" => "user.cover", required: "", type: "file", class: "input-lg", id: "user-cover", "file-model" => "myCoverFile", name: "user[cover]" }/
 
 		.row
 			.col-md-12

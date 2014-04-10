@@ -1,14 +1,15 @@
 %div{ "ng-controller" => "PostsController" }
 	%div{ "ng-include" => "'posts/shared/new.html'" }
 
-	%p.ng-callout{ "ng-hide" => "posts.length > 0" } No messages here
+	%p.ng-callout{ "ng-hide" => "reddit.items.length > 0" } No messages here
 
-	%div{ "ng-repeat" => "post in posts" }
-		%article.post-container
-			.content-container
-				.user-header
-					%img.avatar{ "ng-src" => "{{post.author.small_avatar}}" }
-					.post-user-data
-						%a.user-link{ "href" => "/#!/users/{{post.author.id}}/posts", "ng-bind" => "post.author.full_name" }
-						.post-time{ "ng-bind" => "post.created_at_f" }
-				%div{ "ng-bind" => "post.text" }
+	%div{ infinite: { scroll: "reddit.nextPage()", "scroll-distance" => 1, "scroll-disabled" => "reddit.busy" } }
+		%div{ "ng-repeat" => "post in reddit.items" }
+			%article.post-container
+				.content-container
+					.user-header
+						%img.avatar{ "ng-src" => "{{post.author.small_avatar}}" }
+						.post-user-data
+							%a.user-link{ "href" => "/#!/users/{{post.author.id}}/posts", "ng-bind" => "post.author.full_name" }
+							.post-time{ "ng-bind" => "post.created_at_f" }
+					%div{ "ng-bind" => "post.text" }

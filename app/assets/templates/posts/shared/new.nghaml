@@ -5,7 +5,7 @@
 		.row
 			.col-md-12
 				.form-group.form-body.post
-					%textarea.form-control.input-lg{ "ng-model" => "post.text", placeholder: "Include a message for {{user.first_name}}", required: true }
+					%textarea.form-control.input-lg.post-text{ "ng-model" => "post.text", placeholder: "Include a message for {{user.first_name}}", required: true }
 
 			.col-md-12
 				.form-group.form-actions

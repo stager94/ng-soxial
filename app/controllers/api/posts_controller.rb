@@ -9,7 +9,8 @@ class Api::PostsController < ApplicationController
 	end
 
 	def index
-		render json: Post.includes(:author).where(user_id: params[:user_id]), root: false
+		posts = Post.includes(:author).where(user_id: params[:user_id]).where("id < ?", min_id).limit Post::LIMIT
+		render json: posts, root: false
 	end
 
 	private
@@ -17,4 +18,9 @@ class Api::PostsController < ApplicationController
 	def post_params
 		params.require(:post).permit!
 	end
+
+	def min_id
+		params[:after] ||= ""
+	end
+
 end

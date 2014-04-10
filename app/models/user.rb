@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	validates_uniqueness_of :nickname
 
 	has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#", small: "40x40#" }
+	has_attached_file :cover, styles: { original: "700x700>" }
 
 	def ensure_authentication_token
 		if authentication_token.blank?
