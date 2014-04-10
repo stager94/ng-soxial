@@ -37,6 +37,8 @@ gem 'haml'
 gem 'devise'
 gem 'paperclip'
 gem 'font-awesome-rails'
+gem 'awesome_nested_set'
+gem 'inkwell', :git => 'git://github.com/salkar/inkwell.git'
 
 group :development do
 	gem 'quiet_assets'

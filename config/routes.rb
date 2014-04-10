@@ -17,8 +17,15 @@ NgSocial::Application.routes.draw do
       end
 
       resources :users, only: [:show, :index] do
-        resources :posts, except: [:new, :edit]
+        resources :posts, except: [:new, :edit] do
+          collection do
+            get "favorites" => "users#favorite"
+          end
+        end
       end
+
+      get "posts/:id/favorite" => "posts#favorite"
+      get "posts/:id/unfavorite" => "posts#unfavorite"
 
     end
   end

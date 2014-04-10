@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410084825) do
+ActiveRecord::Schema.define(version: 20140410194778) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,12 +46,71 @@ ActiveRecord::Schema.define(version: 20140410084825) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "inkwell_blog_items", force: true do |t|
+    t.integer  "item_id"
+    t.boolean  "is_reblog"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner_id"
+    t.string   "item_type"
+    t.string   "owner_type"
+  end
+
+  create_table "inkwell_comments", force: true do |t|
+    t.integer  "user_id"
+    t.text     "body"
+    t.integer  "parent_id"
+    t.integer  "commentable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "commentable_type"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
+  end
+
+  add_index "inkwell_comments", ["commentable_id", "commentable_type"], name: "index_inkwell_comments_on_commentable_id_and_commentable_type"
+  add_index "inkwell_comments", ["lft"], name: "index_inkwell_comments_on_lft"
+  add_index "inkwell_comments", ["parent_id"], name: "index_inkwell_comments_on_parent_id"
+  add_index "inkwell_comments", ["rgt"], name: "index_inkwell_comments_on_rgt"
+  add_index "inkwell_comments", ["user_id"], name: "index_inkwell_comments_on_user_id"
+
+  create_table "inkwell_favorite_items", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "item_type"
+    t.string   "owner_type"
+  end
+
+  create_table "inkwell_followings", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "inkwell_timeline_items", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "owner_id"
+    t.text     "from_source",      default: "[]"
+    t.boolean  "has_many_sources", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "item_type"
+    t.string   "owner_type"
+  end
+
   create_table "posts", force: true do |t|
     t.text     "text"
     t.integer  "user_id"
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "users_ids_who_favorite_it", default: "[]"
+    t.text     "users_ids_who_comment_it",  default: "[]"
+    t.text     "users_ids_who_reblog_it",   default: "[]"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
@@ -82,6 +141,8 @@ ActiveRecord::Schema.define(version: 20140410084825) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.integer  "follower_count",         default: 0
+    t.integer  "following_count",        default: 0
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token"

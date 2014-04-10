@@ -6,5 +6,11 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :user_id, :author_id, :text
 
+  acts_as_inkwell_post
+
   LIMIT = 10
+
+  def favourite_for?
+  	current_user.favourite? self
+  end
 end

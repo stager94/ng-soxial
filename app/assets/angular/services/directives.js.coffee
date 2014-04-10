@@ -30,7 +30,7 @@
         return
     return directive
 
-  app.directive "userPosts", ($routeParams, Post) ->
+  app.directive "userPosts", ($routeParams, PostInfinity) ->
     directive =
       templateUrl: "directives/users/posts.html"
       restrict: "AECM"
@@ -38,14 +38,22 @@
       scope: true
       link: ($scope, $element, $attrs, $controller) ->
         console.log "in userPosts directive"
-
-        # Post.query 
-        #   user_id: $routeParams.id
-        # , (response) ->
-        #   $scope.posts = response
-
+        $scope.reddit = new PostInfinity $routeParams.id
 
     return directive
+
+  app.directive "userFavoritePosts", ($routeParams, PostInfinity) ->
+    directive =
+      templateUrl: "directives/users/posts.html"
+      restrict: "AECM"
+      replace: true
+      scope: true
+      link: ($scope, $element, $attrs, $controller) ->
+        console.log "in userPosts directive"
+        $scope.reddit = new PostInfinity $routeParams.id, true
+
+    return directive
+
 
   app.directive "userInformation", ($routeParams, User) ->
     directive =

@@ -11,3 +11,5 @@
 			%a{ href: "/#!/users/{{user.id}}/information" } Information
 		%li.list-group-item{ "ng-class" => "{active: isActive('posts', tab)}" }
 			%a{ href: "/#!/users/{{user.id}}/posts" } Posts
+		%li.list-group-item{ "ng-class" => "{active: isActive('favorite-posts', tab)}" }
+			%a{ href: "/#!/users/{{user.id}}/favorite-posts" } Favorite

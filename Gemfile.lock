@@ -16,6 +16,15 @@ GIT
       ransack (~> 1.0)
       sass-rails
 
+GIT
+  remote: git://github.com/salkar/inkwell.git
+  revision: ceb4c20d2c823eda59c19d38ab8f2e5963562a45
+  specs:
+    inkwell (2.0.0)
+      activerecord (>= 4.0.0)
+      awesome_nested_set (~> 3.0.0.rc.3)
+      railties (>= 4.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,6 +61,8 @@ GEM
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (4.0.2)
+    awesome_nested_set (3.0.0.rc.3)
+      activerecord (>= 4.0.0, < 5)
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
@@ -196,12 +207,14 @@ DEPENDENCIES
   activeadmin!
   angular-rails-templates
   angularjs-rails-resource
+  awesome_nested_set
   bootstrap-sass (~> 3.1.1)
   coffee-rails (~> 4.0.0)
   devise
   font-awesome-rails
   haml
   hirb
+  inkwell!
   jbuilder (~> 1.2)
   jquery-rails
   paperclip

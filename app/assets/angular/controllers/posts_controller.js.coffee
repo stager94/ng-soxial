@@ -6,16 +6,21 @@ window.PostsController = ($scope, $http, $routeParams, Post, security, PostInfin
 			$scope.post = new Post
 			$(".post-text").val("").trigger "autosize.resize"
 
-	$scope.reddit = new PostInfinity $routeParams.id
+	$scope.favorite = (id, index) ->
+		if $scope.reddit.items[index].is_favorite == false
+			path = "favorite"
+		else
+			path = "unfavorite"
+
+		$http.get("/api/v1/posts/" + id + "/" + path).success((response) ->
+			$scope.reddit.items[index].is_favorite = response.favorite
+		).error ->
+			alert "Error!"
 
 	$scope.post = new Post
+	$scope.tab = $routeParams.tab
 
 	$(".post-text").autosize()
-
-	# User.get
-	# 	id: 2
-	# , (response) ->
-	# 	$scope.user = response
 
 	$scope.$on "post:created", (event, object) ->
 		$scope.reddit.items.unshift object

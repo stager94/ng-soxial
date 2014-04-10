@@ -1,7 +1,7 @@
 window.ProfileController = ($scope, $http, User, security) ->
 	console.log "in ProfileController"
 	$scope.user = security.requestCurrentUser()
-	console.log $scope.user
+
 	$scope.errors = null
 	$scope.valid = true
 

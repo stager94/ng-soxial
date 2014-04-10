@@ -4,10 +4,13 @@
 	%p.ng-callout{ "ng-hide" => "reddit.items.length > 0" } No messages here
 
 	%div{ infinite: { scroll: "reddit.nextPage()", "scroll-distance" => 1, "scroll-disabled" => "reddit.busy" } }
-		%div{ "ng-repeat" => "post in reddit.items" }
-			%article.post-container
+		%div{ "ng-repeat" => "post in reddit.items", "ng-mouseenter" => "show = true", "ng-mouseleave" => "show = false" }
+			%article.post-container{ "ng-class" => "{deleted:(tab=='favorite-posts' && post.is_favorite==false)}" }
 				.content-container
 					.user-header
+						.favourite{ "ng-show" => "show || post.is_favorite", "ng-click" => "favorite(post.id, $index)", "ng-class" => "{active:post.is_favorite==true}" }
+							%i.fa.fa-heart
+
 						%img.avatar{ "ng-src" => "{{post.author.small_avatar}}" }
 						.post-user-data
 							%a.user-link{ "href" => "/#!/users/{{post.author.id}}/posts", "ng-bind" => "post.author.full_name" }
