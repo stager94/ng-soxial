@@ -38,6 +38,20 @@ class Api::PostsController < ApplicationController
 		render json: { success: post.destroy }
 	end
 
+	def upload_image
+		# binding.pry
+		image = Image.create params.require(:image).permit!
+		
+		render json: { 
+				name: image.picture_file_name,
+				size: image.picture_file_size,
+				url: image.picture.url,
+				thumbnailUrl: image.picture.url(:preview),
+				deleteUrl: image.picture.url(:preview),
+				deleteType: "DELETE"
+		}
+	end
+
 	private
 
 	def post_params

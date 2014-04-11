@@ -81,7 +81,32 @@
           return
 
     return directive
-    
+
+  app.directive "upload", [
+    "uploadManager"
+    factory = (uploadManager) ->
+      return (
+        restrict: "A"
+        link: (scope, element, attrs) ->
+          $(element).fileupload
+            dataType: "text"
+            add: (e, data) ->
+              uploadManager.add data
+              return
+
+            progressall: (e, data) ->
+              progress = parseInt(data.loaded / data.total * 100, 10)
+              uploadManager.setProgress progress
+              return
+
+            done: (e, data) ->
+              uploadManager.setProgress 0
+              return
+
+          return
+      )
+  ]
+
 
   app.directive "fileModel", [
     "$parse"

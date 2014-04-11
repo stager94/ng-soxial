@@ -1,4 +1,4 @@
-window.PostsController = ($scope, $http, $routeParams, $filter, Post, security, PostInfinity, profile) ->
+window.PostsController = ($scope, $http, $routeParams, $rootScope, $filter, Post, security, PostInfinity, profile, uploadManager) ->
 	$scope.create = ->
 		if $scope.new_post.$valid
 			post_new = Post.save text: $scope.post.text, user_id: $routeParams.id, author_id: security.current_user.id
@@ -23,24 +23,35 @@ window.PostsController = ($scope, $http, $routeParams, $filter, Post, security, 
 		$scope.reddit.items.splice index, 1
 		post.$delete { user_id: $scope.current_user.id, id: post.id }
 
-	# $scope.upload = ->
-	# 	console.log $scope.post
+	$rootScope.$on "fileAdded", (e, call) ->
+		$scope.uploaded.push call
+		$scope.$apply()
+		return
+
+	$rootScope.$on "uploadProgress", (e, call) ->
+		$scope.percentage = call
+		$scope.$apply()
+		return
+
+	$rootScope.$on "uploadSuccess", (e, call) ->
+		file = $filter('filter')($scope.uploaded, { uid: call.uid })[0]
+		file["thumbnailUrl"] = call.thumbnailUrl
+		$scope.$apply()
+		return
 
 	$scope.reddit = new PostInfinity $routeParams.id
 
 	$scope.post = new Post
-	# $scope.post.images = []
-
+	$scope.uploaded = []
+	$scope.percentage = 0
 	$scope.tab = $routeParams.tab
+	
 	
 	$scope.$watch (->
 		security.current_user
 	), (current_user) ->
 		$scope.current_user = current_user
 		return
-		
-	# $scope.current_user = security.requestCurrentUser()
-	console.log $scope.current_user
 
 	$(".post-text").autosize()
 

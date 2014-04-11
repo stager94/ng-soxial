@@ -362,3 +362,18 @@ body {
   margin-top: 0;
   margin-bottom: 20px;
 }
+
+ul {
+  &.uploaded-photos {
+    padding: 13px;
+    list-style-type: none;
+    li {
+      display: inline-block;
+      margin: 2px;
+      width: 100px;
+      height: 100px;
+      background: image-url("image_loader.GIF") no-repeat 50% 50% #ececec;
+      vertical-align: top;
+    }
+  }
+}

@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.ui.all
 //= require jquery.autosize
 //= require inputfile
 //= require angular.min
@@ -22,6 +23,8 @@
 //= require ../angular/app
 //= require_tree ../angular
 //= require_tree ../templates
+//= require jquery.fileupload
+//= require jquery.fileupload-angular
 
 
 $.fn.serializeObject = function() {

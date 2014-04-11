@@ -24,6 +24,7 @@ NgSocial::Application.routes.draw do
         end
       end
 
+      post "posts/upload_image" => "posts#upload_image"
       get "posts/:id/favorite" => "posts#favorite"
       get "posts/:id/unfavorite" => "posts#unfavorite"
 

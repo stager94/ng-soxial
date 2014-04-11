@@ -217,6 +217,7 @@ DEPENDENCIES
   inkwell!
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-ui-rails
   paperclip
   pry
   quiet_assets
