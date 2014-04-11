@@ -32,6 +32,12 @@ class Api::PostsController < ApplicationController
 		render json: { success: true, favorite: current_user.favorite?(post) }
 	end
 
+	def destroy
+		post = Post.find_by(id: params[:id])
+		
+		render json: { success: post.destroy }
+	end
+
 	private
 
 	def post_params

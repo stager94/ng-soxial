@@ -16,3 +16,6 @@
 							%a.user-link{ "href" => "/#!/users/{{post.author.id}}/posts", "ng-bind" => "post.author.full_name" }
 							.post-time{ "ng-bind" => "post.created_at_f" }
 					%div{ "ng-bind" => "post.text" }
+				
+					.contant-actions{ "ng-show" => "current_user.id == post.author.id" }
+						%a{ "ng-click" => "delete($index)" } Удалить

@@ -287,6 +287,16 @@ body {
     position: relative;
     padding: 15px;
 
+    .contant-actions {
+      margin-top: 10px;
+      margin-bottom: -5px;
+      font-size: 12px;
+      a {
+        color: #999;  
+      }
+      
+    }
+
     .favourite {
       i {
         position: absolute;

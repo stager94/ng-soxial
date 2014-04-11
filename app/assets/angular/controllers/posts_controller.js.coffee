@@ -1,12 +1,10 @@
-window.PostsController = ($scope, $http, $routeParams, Post, security, PostInfinity) ->
+window.PostsController = ($scope, $http, $routeParams, $filter, Post, security, PostInfinity, profile) ->
 	$scope.create = ->
-		console.log "$scope.create"
 		if $scope.new_post.$valid
 			post_new = Post.save text: $scope.post.text, user_id: $routeParams.id, author_id: security.current_user.id
 			$(".post-text").val("").trigger "autosize.resize"
 			$scope.$emit "post:created", post_new
 			$scope.post = new Post
-			
 
 	$scope.favorite = (id, index) ->
 		if $scope.reddit.items[index].is_favorite == false
@@ -19,13 +17,30 @@ window.PostsController = ($scope, $http, $routeParams, Post, security, PostInfin
 		).error ->
 			alert "Error!"
 
+	$scope.delete = (index) ->
+		post = new Post $scope.reddit.items[index]
+		console.log post.id
+		$scope.reddit.items.splice index, 1
+		post.$delete { user_id: $scope.current_user.id, id: post.id }
+
 	# $scope.upload = ->
 	# 	console.log $scope.post
+
+	$scope.reddit = new PostInfinity $routeParams.id
 
 	$scope.post = new Post
 	# $scope.post.images = []
 
 	$scope.tab = $routeParams.tab
+	
+	$scope.$watch (->
+		security.current_user
+	), (current_user) ->
+		$scope.current_user = current_user
+		return
+		
+	# $scope.current_user = security.requestCurrentUser()
+	console.log $scope.current_user
 
 	$(".post-text").autosize()
 
