@@ -286,8 +286,8 @@ body {
   .content-container {
     position: relative;
     padding: 15px;
+
     .favourite {
-      opacity: .6;
       i {
         position: absolute;
         top: 0;
@@ -303,15 +303,15 @@ body {
       }
       &:hover {
         i {
-          color: #f45858;
-          border-color: #f45858;
+          color: #ff7568;
+          border-color: #ff7568;
         }
       }
       &.active {
-        opacity: 1;
         i {
-          border-color: #f45858;
-          color: #f45858;
+          background: #ff7568;
+          border-color: #ff7568;
+          color: white;
         }
         
       }

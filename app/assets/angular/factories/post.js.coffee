@@ -1,6 +1,5 @@
 App.factory "Post", ($resource) -> $resource "api/v1/users/:user_id/posts/:id", id: "@id", user_id: "@user_id"
 
-
 App.factory "PostInfinity", ($http) ->
 	PostInfinity = (user_id, favorite=false) ->
 		console.log "in PostInfinity init"
@@ -34,9 +33,6 @@ App.factory "PostInfinity", ($http) ->
 				@stop = true
 			return
 		).bind(this)
-		return
-
-	PostInfinity::favourite = (id) ->
-		
+		return		
 
 	PostInfinity

@@ -4,7 +4,7 @@
 	%p.ng-callout{ "ng-hide" => "reddit.items.length > 0" } No messages here
 
 	%div{ infinite: { scroll: "reddit.nextPage()", "scroll-distance" => 1, "scroll-disabled" => "reddit.busy" } }
-		%div{ "ng-repeat" => "post in reddit.items", "ng-mouseenter" => "show = true", "ng-mouseleave" => "show = false" }
+		%div{ "ng-repeat" => "post in reddit.items track by $index", "ng-mouseenter" => "show = true", "ng-mouseleave" => "show = false" }
 			%article.post-container{ "ng-class" => "{deleted:(tab=='favorite-posts' && post.is_favorite==false)}" }
 				.content-container
 					.user-header
