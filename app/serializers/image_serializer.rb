@@ -1,5 +1,5 @@
 class ImageSerializer < ActiveModel::Serializer
-  attributes :id, :medium, :original
+  attributes :id, :medium, :original, :width, :height
 
   def preview
   	object.picture.url :preview
@@ -12,4 +12,5 @@ class ImageSerializer < ActiveModel::Serializer
   def original
   	object.picture.url
   end
+
 end

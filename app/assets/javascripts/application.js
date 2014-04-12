@@ -26,6 +26,7 @@
 //= require jquery.fileupload
 //= require jquery.fileupload-angular
 //= require underscore
+//= require alter.fluidimages
 
 
 $.fn.serializeObject = function() {

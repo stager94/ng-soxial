@@ -2,7 +2,6 @@ App.factory "Post", ($resource) -> $resource "api/v1/users/:user_id/posts/:id", 
 
 App.factory "PostInfinity", ($http) ->
 	PostInfinity = (user_id, favorite=false) ->
-		console.log "in PostInfinity init"
 		@user_id = user_id
 		@items = []
 		@busy = false
@@ -13,7 +12,6 @@ App.factory "PostInfinity", ($http) ->
 		return
 
 	PostInfinity::nextPage = ->
-		console.log "Next Page link", @after
 		return if @busy or @stop
 		@busy = true
 		if @favorite
@@ -29,6 +27,7 @@ App.factory "PostInfinity", ($http) ->
 
 				@after = data.last_id
 				@busy = false
+				console.log "posts loaded"
 			else
 				@stop = true
 			return

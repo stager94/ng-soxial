@@ -17,8 +17,9 @@
 							.post-time{ "ng-bind" => "post.created_at_f" }
 
 					%div{ "ng-bind" => "post.text" }
-					%div{ "ng-repeat" => "image in post.images", "ng-show" => "post.images.length > 0" }
-						%img{ "ng-src" => "{{image.medium}}" }
+					.media-images{ "data-max-height" => 500 }
+						%a{ "ng-repeat" => "image in post.images", "data-width" => "{{image.width}}", "data-height" => "{{image.height}}" }
+							%img{ "ng-src" => "{{image.medium}}" }
 
 					.contant-actions{ "ng-show" => "current_user.id == post.author.id" }
 						%a{ "ng-click" => "delete($index)" } Удалить

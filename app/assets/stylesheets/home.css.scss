@@ -398,3 +398,18 @@ ul {
     }
   }
 }
+
+.media-images {
+  a {
+    display: block;
+    float: left;
+    overflow: hidden;
+    cursor: pointer !important;
+    box-sizing: border-box;
+    padding: 2px;
+    max-height: 252px;
+    img {
+      display: none;
+    }
+  }
+}
