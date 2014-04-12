@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :author, class_name: "User"
-  belongs_to :imageable, polymorphic: true
+  has_many :images, as: :imageable
 
   default_scope order("created_at desc")
 

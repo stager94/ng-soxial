@@ -25,6 +25,7 @@
 //= require_tree ../templates
 //= require jquery.fileupload
 //= require jquery.fileupload-angular
+//= require underscore
 
 
 $.fn.serializeObject = function() {

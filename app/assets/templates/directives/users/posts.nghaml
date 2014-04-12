@@ -15,7 +15,10 @@
 						.post-user-data
 							%a.user-link{ "href" => "/#!/users/{{post.author.id}}/posts", "ng-bind" => "post.author.full_name" }
 							.post-time{ "ng-bind" => "post.created_at_f" }
+
 					%div{ "ng-bind" => "post.text" }
-				
+					%div{ "ng-repeat" => "image in post.images", "ng-show" => "post.images.length > 0" }
+						%img{ "ng-src" => "{{image.medium}}" }
+
 					.contant-actions{ "ng-show" => "current_user.id == post.author.id" }
 						%a{ "ng-click" => "delete($index)" } Удалить

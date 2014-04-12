@@ -71,6 +71,9 @@ App.config ($httpProvider) ->
 					deferred = $q.defer()
 					scope.$broadcast "event:unauthorized"
 					return deferred.promise
+				if response.status is 500
+					deferred = $q.defer()
+					scope.$broadcast "event:error"
 				$q.reject response
 			return (promise) ->
 				promise.then success, error

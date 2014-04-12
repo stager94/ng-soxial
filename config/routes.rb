@@ -24,6 +24,9 @@ NgSocial::Application.routes.draw do
         end
       end
 
+      post "attachments" => "attachments#create"
+      post "attachments/:id/destroy" => "attachments#destroy"
+
       post "posts/upload_image" => "posts#upload_image"
       get "posts/:id/favorite" => "posts#favorite"
       get "posts/:id/unfavorite" => "posts#unfavorite"

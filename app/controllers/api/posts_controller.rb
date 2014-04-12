@@ -1,7 +1,11 @@
 class Api::PostsController < ApplicationController
 	def create
-		post = Post.new post_params
-		if post.save
+		post = Post.create post_params
+		if post.valid?
+			Image.where(id: params[:images_ids]).each do |image|
+				image.update_attributes imageable_id: post.id, imageable_type: "Post"
+			end
+
 			render json: post
 		else
 			render json: { success: false, errors: post.errors.full_messages }
@@ -36,20 +40,6 @@ class Api::PostsController < ApplicationController
 		post = Post.find_by(id: params[:id])
 		
 		render json: { success: post.destroy }
-	end
-
-	def upload_image
-		# binding.pry
-		image = Image.create params.require(:image).permit!
-		
-		render json: { 
-				name: image.picture_file_name,
-				size: image.picture_file_size,
-				url: image.picture.url,
-				thumbnailUrl: image.picture.url(:preview),
-				deleteUrl: image.picture.url(:preview),
-				deleteType: "DELETE"
-		}
 	end
 
 	private

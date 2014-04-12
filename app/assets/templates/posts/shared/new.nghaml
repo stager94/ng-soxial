@@ -1,15 +1,15 @@
 .ng-social-block{ "ng-controller" => "PostsController" }
 	%form#new-post{ name: "new_post", novalidate: "", "ng-submit" => "create()" }
-		/ %h2 Post for friend
 
 		.row
 			.col-md-12
 				.form-group.form-body.post
 					%textarea.form-control.input-lg.post-text{ "ng-model" => "post.text", placeholder: "Include a message for {{user.first_name}}", required: true }
 
-			.col-md-12
+			.col-md-12{ "ng-controller" => "UploaderController" }
 				%ul.uploaded-photos{ "ng-show" => "uploaded.length > 0" }
-					%li{"ng-repeat" => "file in uploaded"}
+					%li{"ng-repeat" => "file in uploaded", "ng-mouseenter" => "show = true", "ng-mouseleave" => "show = false" }
+						%a.destroy{ "ng-click" => "destroy(file.id)", "ng-show" => "show" } &times;
 						%img{ "ng-src" => "{{file.thumbnailUrl}}" }
 
 				/ .progress.progress-striped.active
@@ -22,4 +22,4 @@
 					%span.btn.btn-default.fileinput-button.pull-right
 						%i.fa.fa-cloud-upload
 						%span Add files...
-						%input{ name: "image[picture]", type: "file", multiple: true, upload: true, "data-url" => "api/v1/posts/upload_image" }
+						%input{ name: "image[picture]", type: "file", multiple: true, upload: true, "data-url" => "api/v1/attachments" }

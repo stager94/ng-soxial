@@ -9,5 +9,5 @@ class Image < ActiveRecord::Base
 		original: "-strip -quality 80 -interlace Plane",
 	}
 
-	has_many :posts
+	belongs_to :imageable, polymorphic: true
 end

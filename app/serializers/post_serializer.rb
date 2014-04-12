@@ -1,6 +1,7 @@
 class PostSerializer < ActiveModel::Serializer
   attributes :id, :text, :created_at_f, :is_favorite
   has_one :author
+  has_many :images
   self.root = false
 
   def created_at_f
