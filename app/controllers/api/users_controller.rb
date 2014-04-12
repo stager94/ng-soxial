@@ -27,10 +27,27 @@ class Api::UsersController < ApplicationController
 		user = User.find_by id: params[:user_id]
 		posts = user.favoriteline prepare_params
 		
-		render json: { 
+		render json: {
+			success: true,
 			posts: posts.each.map{|p| PostSerializer.new(p, scope: current_user) }, 
 			last_id: posts.last.item_id_in_line 
 		}
+	end
+
+	def friends
+		user = User.find_by id: params[:id]
+		if user
+			friends = user.friends
+			render json: { 
+				success: true, 
+				friends: friends.each.map{|f| UserSerializer.new(f, scope: current_user)}
+			}
+		else
+			render json: { 
+				success: false, 
+				error: "No user found." 
+			}
+		end
 	end
 
 	private

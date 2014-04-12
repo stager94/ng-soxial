@@ -42,6 +42,19 @@
 
     return directive
 
+  app.directive "userFriends", ($http, $rootScope, $routeParams) ->
+    directive =
+      templateUrl: "directives/users/friends.html"
+      restrict: "AECM"
+      link: ($scope, $element, $attrs, $controller) ->
+        console.log "User Friends"
+        $http.get("/api/v1/users/" + $routeParams.id + "/friends").success((response) ->
+          $rootScope.friends = response.friends
+          return
+        )
+        return
+    return directive
+
   app.directive "userFavoritePosts", ($routeParams, PostInfinity) ->
     directive =
       templateUrl: "directives/users/posts.html"
@@ -106,7 +119,6 @@
           return
       )
   ]
-
 
   app.directive "fileModel", [
     "$parse"

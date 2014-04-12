@@ -10,6 +10,7 @@
 					.user-header
 						.favourite{ "ng-show" => "show || post.is_favorite", "ng-click" => "favorite(post.id, $index)", "ng-class" => "{active:post.is_favorite==true}" }
 							%i.fa.fa-heart
+								.up
 
 						%img.avatar{ "ng-src" => "{{post.author.small_avatar}}" }
 						.post-user-data
@@ -17,7 +18,7 @@
 							.post-time{ "ng-bind" => "post.created_at_f" }
 
 					%div{ "ng-bind" => "post.text" }
-					.media-images{ "data-max-height" => 500 }
+					.media-images{ "data-max-height" => 500, "ng-show" => "post.images.length > 0" }
 						%a{ "ng-repeat" => "image in post.images", "data-width" => "{{image.width}}", "data-height" => "{{image.height}}" }
 							%img{ "ng-src" => "{{image.medium}}" }
 

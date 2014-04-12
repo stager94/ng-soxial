@@ -238,8 +238,18 @@ ul {
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 3px;
 
-  &.padded {
+  &.padded, .block-padded {
     padding: 15px;
+  }
+  .block-header {
+    line-height: 38px;
+    padding: 0 15px;
+    font-size: 13px;
+    color: #6a7480;
+    font-weight: bold;
+    background: #f6f7f8;
+    border-bottom: 1px solid #e9eaed;
+    border-radius: 3px 3px 0 0;
   }
 }
 body {
@@ -299,28 +309,39 @@ body {
 
     .favourite {
       i {
+        opacity: .8;
         position: absolute;
         top: 0;
         right: 10px;
-        padding: 10px 5px;
-        /* background: gray; */
-        /* border-right: 1px solid gray; */
-        border-width: 0 1px 1px 1px;
-        border-color: #CBCBCB;
-        border-style: solid;
+        padding: 10px 5px 15px;
         color: #aaaaaa;
         cursor: pointer;
+        background: #eee;
+        .up {
+          width: 0px;
+          height: 0px;
+          border-left: 14px solid transparent;
+          border-right: 14px solid transparent;
+          border-bottom: 7px solid #fff;
+          font-size: 0px;
+          line-height: 0px;
+          position: absolute;
+          bottom: -1px;
+          margin-left: 40%;
+          left: -12px;
+        }
       }
       &:hover {
         i {
-          color: #ff7568;
-          border-color: #ff7568;
+          color: #fff;
+          background: #ff7568;
         }
       }
       &.active {
+        
         i {
+          opacity: 1;
           background: #ff7568;
-          border-color: #ff7568;
           color: white;
         }
         
@@ -400,6 +421,7 @@ ul {
 }
 
 .media-images {
+  margin-top: 15px;
   a {
     display: block;
     float: left;
@@ -407,9 +429,40 @@ ul {
     cursor: pointer !important;
     box-sizing: border-box;
     padding: 2px;
-    max-height: 252px;
+    // max-height: 252px;
     img {
       display: none;
+    }
+  }
+}
+.friend-list {
+  .friends-row {
+    margin: 10px -5px;
+  }
+  .friends {
+    padding: 5px;
+    .friend {
+      display: block;
+      position: relative;
+      img {
+        width: 100%;
+      }
+      .name {
+        background: #000;
+        background: -webkit-gradient(linear, center top, center bottom, from(transparent), to(rgba(0, 0, 0, .7)));
+        background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .7));
+        bottom: 0;
+        color: #fff;
+        display: block;
+        left: 0;
+        padding: 10px 5px 5px 5px;
+        position: absolute;
+        width: 100%;
+        word-wrap: break-word;
+        line-height: 1.28;
+        font-size: 11px;
+        font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+      }
     }
   }
 }

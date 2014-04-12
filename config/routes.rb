@@ -17,6 +17,9 @@ NgSocial::Application.routes.draw do
       end
 
       resources :users, only: [:show, :index] do
+        member do
+          get :friends
+        end
         resources :posts, except: [:new, :edit] do
           collection do
             get "favorites" => "users#favorite"
@@ -30,7 +33,6 @@ NgSocial::Application.routes.draw do
       post "posts/upload_image" => "posts#upload_image"
       get "posts/:id/favorite" => "posts#favorite"
       get "posts/:id/unfavorite" => "posts#unfavorite"
-
     end
   end
 

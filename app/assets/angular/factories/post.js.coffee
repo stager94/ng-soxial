@@ -8,7 +8,6 @@ App.factory "PostInfinity", ($http) ->
 		@after = ""
 		@stop = false
 		@favorite = favorite
-		console.log @after
 		return
 
 	PostInfinity::nextPage = ->

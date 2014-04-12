@@ -6,12 +6,12 @@
 			var images = $('img', block);
 			var images_count = images.length;
 			var max_height = $(block).attr("data-max-height");
-			var large_min_row_height = 90;
+			var large_min_row_height = 140;
 			if (images_count > 0) {
 				if (images_count >= 3) {
-					var large_min_row_height = 90;
+					var large_min_row_height = 150;
 				}
-				var medium_min_row_height = 90;
+				var medium_min_row_height = 110;
 				var small_min_row_height = 90;
 				var min_row_height = large_min_row_height;
 
@@ -34,7 +34,9 @@
 					var widths_sum = 0;
 					var length = $("img[data-row=-1]", block).length;
 
+					k = 0;
 					while (t == true && i < length) {
+						k++;
 						var image = $("img[data-row=-1]", block)[0];
 						var image_height = $(image).parent('a').attr("data-height");
 						var image_width = $(image).parent('a').attr("data-width");
@@ -43,9 +45,10 @@
 						widths_sum += n_width;
 						var global_dimension = block_width / widths_sum;
 						var n_height = temp_height * global_dimension;
-						if (n_height < min_row_height) {
+						if (n_height < min_row_height || k > 3) {
 							widths_sum -= n_width;
 							t = false;
+							k = 0;
 							if (widths_sum == 0) {
 								$("img[data-row=-1]:first", block).attr("data-row", rows);
 							}
@@ -65,7 +68,6 @@
 					var image = $("img[data-row=-1]:first", block);
 					var image_width = image.parent('a').attr("data-width");
 					var image_height = image.parent('a').attr("data-height");
-					console.log(image_width, image_height);
 					if (image_width / image_height > 1.4) {
 						image.css({"width": "100%"}).parent().css({"width": "100%"});;
 					} else {
@@ -86,10 +88,8 @@
 
 		this.each(function(){
 			if (reload == true) {
-				console.log('1', $(this));
 				run(this);
 			} else {
-				console.log('2', $(this).not("[data-fluid=true]"));
 				run($(this).not("[data-fluid=true]"));
 			}
 		});

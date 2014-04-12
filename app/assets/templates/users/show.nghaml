@@ -1,5 +1,6 @@
 .container
 	%article.col-md-4
 		%user-menu
+		%user-friends
 
 	.col-md-8#user-directives

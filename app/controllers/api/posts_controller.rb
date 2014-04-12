@@ -13,7 +13,7 @@ class Api::PostsController < ApplicationController
 	end
 
 	def index
-		posts = Post.includes(:author).where(user_id: params[:user_id]).where("id < ?", min_id).limit Post::LIMIT
+		posts = Post.includes(:author, :images).where(user_id: params[:user_id]).where("id < ?", min_id).limit Post::LIMIT
 
 		render json: { 
 			posts: posts.each.map{|p| PostSerializer.new(p, scope: current_user) }, 
