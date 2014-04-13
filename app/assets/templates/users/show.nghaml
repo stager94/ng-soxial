@@ -3,4 +3,8 @@
 		%user-menu
 		%user-friends
 
-	.col-md-8#user-directives
+	.col-md-8
+		#user-directives
+
+		.GridTimeline-footer
+			.enot

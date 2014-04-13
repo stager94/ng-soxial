@@ -466,3 +466,17 @@ ul {
     }
   }
 }
+
+.GridTimeline-footer {
+  margin-top: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, .25);
+  margin-bottom: 10px;
+  .enot {
+    background: image-url("enot.png") no-repeat 50% 50% #e7e7e7;
+    width: 60px;
+    height: 30px;
+    margin: 0 auto;
+    margin-bottom: -15px;
+    padding: 0 10px;
+  }
+}

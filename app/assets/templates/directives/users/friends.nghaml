@@ -2,7 +2,7 @@
 	.block-header Friends and followings
 	.col-md-12
 		.row.friends-row
-			.col-md-4.friends{ "ng-repeat" => "user in friends" }
+			.col-xs-4.col-md-4.friends{ "ng-repeat" => "user in friends" }
 				%a.friend{ "href" => "/#!/users/{{user.id}}/posts" }
 					%img{ "ng-src" => "{{user.medium_avatar}}" }
 					.name{ "ng-bind" => "user.full_name" }
